@@ -1,0 +1,35 @@
+﻿<Window x:Class="CARS_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CARS_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Row="0">
+            <TextBlock Text="Termékek" FontSize="16" FontWeight="Bold"/>
+            <ListBox x:Name="productList" Height="150" SelectionChanged="ProductList_SelectionChanged"/>
+            <Label x:Name="orderCountLabel" FontSize="14" Foreground="Red"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Row="0" HorizontalAlignment="Right">
+            <TextBlock Text="Országok" FontSize="16" FontWeight="Bold"/>
+            <ComboBox x:Name="countryDropdown" SelectionChanged="CountryDropdown_SelectionChanged"/>
+            <DataGrid x:Name="customersGrid" AutoGenerateColumns="True" Height="150"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+            <TextBlock Text="Rendelések" FontSize="16" FontWeight="Bold"/>
+            <DataGrid x:Name="ordersGrid" AutoGenerateColumns="True" Height="200" SelectionChanged="OrdersGrid_SelectionChanged"/>
+
+            <TextBlock Text="Rendelés termékei" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+            <ListBox x:Name="productsListBox" Height="150"/>
+        </StackPanel>
+    </Grid>
+</Window>
