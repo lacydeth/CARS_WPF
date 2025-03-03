@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -34,7 +32,7 @@ namespace CARS_WPF
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Hiba a termékek betöltésekor: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -55,7 +53,7 @@ namespace CARS_WPF
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading countries: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Hiba az országok betöltésekor: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -66,7 +64,7 @@ namespace CARS_WPF
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM orders", conn);
+                    MySqlCommand cmd = new MySqlCommand("SELECT orderNumber, orderDate, status FROM orders", conn);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -75,7 +73,7 @@ namespace CARS_WPF
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading orders: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Hiba a rendelések betöltésekor: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -94,17 +92,17 @@ namespace CARS_WPF
                         int orderCount = Convert.ToInt32(cmd.ExecuteScalar());
                         if (orderCount > 0)
                         {
-                            orderCountLabel.Content = $"Orders: {orderCount}";
+                            orderCountLabel.Content = $"Rendelések száma: {orderCount}";
                         }
                         else
                         {
-                            MessageBox.Show("No orders found for this product.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Ehhez a termékhez nem található rendelés.", "Figyelmeztetés", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error retrieving order count: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Hiba a rendelések lekérdezésekor: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -128,7 +126,7 @@ namespace CARS_WPF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading customers: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Hiba az ügyfelek betöltésekor: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -153,7 +151,7 @@ namespace CARS_WPF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading order products: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Hiba a rendelés termékeinek betöltésekor: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
